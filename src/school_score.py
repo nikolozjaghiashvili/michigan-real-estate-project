@@ -47,7 +47,7 @@ def get_school_score(enrollment, assessment, effectiveness, csv_path = 'resource
     
     #removing buildings that do not have a score 
     totalassessmentdf1cleaned = totalassessmentdf1.dropna(subset=['amalgam_education_score']).reset_index(drop = True)
-    totalassessmentdf1cleaned = totalassessmentdf1cleaned.rename(columns={'BuildingCode':'building_code','BuildingName':'building_name','PercentMet_soc':'percent_met_soc','Total % Enrolled in an IHE within 0-6 months':'total_enrolled','DistrictCode':'district_code','PercentMet_sci':'percent_met_sci'})
+    totalassessmentdf1cleaned = totalassessmentdf1cleaned.rename(columns={'BuildingCode':'school_code','BuildingName':'school_name','PercentMet_soc':'percent_met_soc','Total % Enrolled in an IHE within 0-6 months':'total_enrolled','DistrictCode':'district_code','PercentMet_sci':'percent_met_sci'})
     
     if csv_save:
         totalassessmentdf1cleaned.to_pickle(csv_path)

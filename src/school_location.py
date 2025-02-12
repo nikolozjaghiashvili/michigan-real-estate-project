@@ -59,7 +59,10 @@ def parse_school_location(url_list):
 def clean_school_location(df_school):
     df_school = df_school[['ENTITYCD','OFFICIALNM','LATITUDE','LONGITUDE']]
     df_school.columns = ['school_code','school_name','latitude','longitude']
-    df_school = gpd.GeoDataFrame(df_school, geometry=gpd.points_from_xy(df_school.latitude, df_school.longitude), crs="EPSG:4326")
+    df_school = gpd.GeoDataFrame(df_school, geometry=gpd.points_from_xy(df_school.longitude, df_school.latitude), crs="EPSG:4326")
+
+    df_school['school_code'] = df_school['school_code'].astype('float')
+    df_school['school_name'] = df_school['school_name'].astype('string')
     return df_school
 
 

@@ -7,6 +7,11 @@ def parse_district_location(shapefile_path = "resources/data/school_district_map
 def clean_district_location(df_district):
     df_district = df_district[['DCode','Name','Shape__Are','geometry']]
     df_district.columns = ['district_code','district_name','district_area','geometry']
+
+    
+    df_district['district_code'] = df_district['district_code'].astype('float')
+    df_district['district_name'] = df_district['district_name'].astype('string')
+    df_district = df_district.to_crs(epsg=4326)
     return df_district
 
 def get_district_location(shapefile_path = "resources/data/school_district_map/School_District.shp", 
