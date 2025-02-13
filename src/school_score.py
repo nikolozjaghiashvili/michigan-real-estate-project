@@ -50,7 +50,7 @@ def get_school_score(enrollment, assessment, effectiveness, csv_path = 'resource
     totalassessmentdf1cleaned = totalassessmentdf1cleaned.rename(columns={'BuildingCode':'school_code','BuildingName':'school_name','PercentMet_soc':'percent_met_soc','Total % Enrolled in an IHE within 0-6 months':'total_enrolled','DistrictCode':'district_code','PercentMet_sci':'percent_met_sci'})
     
     if csv_save:
-        totalassessmentdf1cleaned.to_pickle(csv_path)
+        totalassessmentdf1cleaned.to_csv(csv_path, index=False, encoding="utf-8")
     return totalassessmentdf1cleaned
 
 
