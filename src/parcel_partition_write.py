@@ -9,18 +9,8 @@ def parcel_partition_write(input_file = 'resources/data/filtered_core_logic.txt'
         os.makedirs(output_directory, exist_ok=True)
         
         spark = SparkSession.builder.appName("SparkPartitioning").master("local[*]").getOrCreate()
-        
-        df = spark.read.option("delimiter", "|") \
-            .option("header", True) \
-            .option("inferSchema", True) \
-            .csv(input_file)
-        
-        df.write \
-            .option("header", True) \
-            .option("delimiter", "|") \
-            .mode("overwrite") \
-            .partitionBy(partition_column) \
-            .csv(output_directory)
+        df = spark.read.option("delimiter", "|").option("header", True).option("inferSchema", True).csv(input_file)
+        df.write.option("header", True).option("delimiter", "|").mode("overwrite").partitionBy(partition_column).csv(output_directory)
     
         return 'success'
     except:
