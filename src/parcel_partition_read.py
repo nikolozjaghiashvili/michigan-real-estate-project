@@ -3,7 +3,8 @@ import geopandas as gpd
 
 def parcel_partition_clean(df, formated_columns):
     df.columns = formated_columns
-    df = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['block_level_latitude'], df['block_level_longitude']), crs="EPSG:4326")
+    df = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['block_level_longitude'], df['block_level_latitude']), crs="EPSG:4326")
+    df.loc[:, formated_columns.difference(['status_use_description'])] = df.loc[:, formated_columns.difference(['status_use_description'])].astype(float)
     return df
 
     
