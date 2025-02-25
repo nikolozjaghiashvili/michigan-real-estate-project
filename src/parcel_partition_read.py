@@ -13,7 +13,7 @@ def parcel_partition_read(partition_folder, partition_value,
                          pkl_path, pkl_save = False):
     
     spark = SparkSession.builder.appName("ReadPartition").master("local[*]").getOrCreate()
-    df_spark = spark.read.option("delimiter", "|").option("header", True).csv(partition_folder)
+    df_spark = spark.read.option("delimiter", "|").option("header", True).csv(f'parition_{partition_folder}/{partition_folder}={partition_value}')
 
     selected_columns = ['CLIP','BLOCK LEVEL LATITUDE','BLOCK LEVEL LONGITUDE','TOTAL VALUE CALCULATED',
                         'STATE USE DESCRIPTION','ACRES','UNIVERSAL BUILDING SQUARE FEET','LIVING SQUARE FEET - ALL BUILDINGS']
